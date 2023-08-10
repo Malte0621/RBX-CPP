@@ -23,11 +23,11 @@ def main():
     # Build project
     subprocess.run("cmake --build .", shell=True)
 
-    # Change directory to TestingProject
-    os.chdir("TestingProject")
+    # Change directory to src
+    os.chdir("src")
 
     # Convert wasm to lua
-    subprocess.run("wasm2luau TestingProject.wasm > ..\\..\\dist\\TestingProject.lua", shell=True)
+    subprocess.run("wasm2luau RbxCppProject.wasm > ..\\..\\dist\\main.lua", shell=True)
 
     # Change directory back to build
     os.chdir("..\\..")
@@ -36,7 +36,7 @@ def main():
     shutil.rmtree("build")
 
     # Replace some stuff .-.
-    with open("dist\\TestingProject.lua", "r") as f:
+    with open("dist\\main.lua", "r") as f:
         content = f.read()
 
         offsets = {
@@ -126,7 +126,7 @@ return {
     FUNC_LIST = FUNC_LIST;
 }"""
     
-        with open("dist\\TestingProject.lua", "w") as f:
+        with open("dist\\main.lua", "w") as f:
             f.write(content)
 
 if __name__ == "__main__":
