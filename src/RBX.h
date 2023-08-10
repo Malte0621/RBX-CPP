@@ -108,8 +108,8 @@ namespace RBX {
 			
 			// Make a new thread
 			std::thread* t = new std::thread(([=]() {
-				std::string ret = lua_call((std::string("local cs = game:GetService(\"CollectionService\") local inst = cs:GetTagged(\"") + DebugID + "\")[1] if inst then local event = inst." + name + " local dID = \"__dID_\" .. game:GetService(\"HttpService\"):GenerateGUID(false) cs:AddTag(event, dID) if event then local ret = {} local rawRet = {event:Wait()} for i,v in ipairs(rawRet) do if typeof(v) == \"Instance\" then local dID2 = nil for i,v in ipairs(cs:GetTags(v)) if #v > 6 and v:sub(1,6) == \"__dID_\" then dID2 = v break end end if not dID2 then dID2 = \"__dID_\" .. game:GetService(\"HttpService\"):GenerateGUID(false) cs:AddTag(v, dID2) end table.insert(ret, dID2) else table.insert(ret, tostring(v)) end end return table.concat(ret, \"§\") end end").c_str());
-				callback(RBX_Utils::string::split(ret, "§"));
+				std::string ret = lua_call((std::string("local cs = game:GetService(\"CollectionService\") local inst = cs:GetTagged(\"") + DebugID + "\")[1] if inst then local event = inst." + name + " local dID = \"__dID_\" .. game:GetService(\"HttpService\"):GenerateGUID(false) cs:AddTag(event, dID) if event then local ret = {} local rawRet = {event:Wait()} for i,v in ipairs(rawRet) do if typeof(v) == \"Instance\" then local dID2 = nil for i,v in ipairs(cs:GetTags(v)) if #v > 6 and v:sub(1,6) == \"__dID_\" then dID2 = v break end end if not dID2 then dID2 = \"__dID_\" .. game:GetService(\"HttpService\"):GenerateGUID(false) cs:AddTag(v, dID2) end table.insert(ret, dID2) else table.insert(ret, tostring(v)) end end return table.concat(ret, \"\x1B\") end end").c_str());
+				callback(RBX_Utils::string::split(ret, "\x1B"));
 			}));
 
 			t->detach();
@@ -122,8 +122,8 @@ namespace RBX {
 		
 		//std::vector<std::string> WaitEvent(std::string name) {
 		std::vector<std::string> WaitEvent(std::string name) {
-			std::string ret = lua_call((std::string("local cs = game:GetService(\"CollectionService\") local inst = cs:GetTagged(\"") + DebugID + "\")[1] if inst then local event = inst." + name + " local dID = \"__dID_\" .. game:GetService(\"HttpService\"):GenerateGUID(false) cs:AddTag(event, dID) if event then local ret = {} local rawRet = {event:Wait()} for i,v in ipairs(rawRet) do if typeof(v) == \"Instance\" then local dID2 = nil for i,v in ipairs(cs:GetTags(v)) if #v > 6 and v:sub(1,6) == \"__dID_\" then dID2 = v break end end if not dID2 then dID2 = \"__dID_\" .. game:GetService(\"HttpService\"):GenerateGUID(false) cs:AddTag(v, dID2) end table.insert(ret, dID2) else table.insert(ret, tostring(v)) end end return table.concat(ret, \"§\") end end").c_str());
-			return RBX_Utils::string::split(ret, "§");
+			std::string ret = lua_call((std::string("local cs = game:GetService(\"CollectionService\") local inst = cs:GetTagged(\"") + DebugID + "\")[1] if inst then local event = inst." + name + " local dID = \"__dID_\" .. game:GetService(\"HttpService\"):GenerateGUID(false) cs:AddTag(event, dID) if event then local ret = {} local rawRet = {event:Wait()} for i,v in ipairs(rawRet) do if typeof(v) == \"Instance\" then local dID2 = nil for i,v in ipairs(cs:GetTags(v)) if #v > 6 and v:sub(1,6) == \"__dID_\" then dID2 = v break end end if not dID2 then dID2 = \"__dID_\" .. game:GetService(\"HttpService\"):GenerateGUID(false) cs:AddTag(v, dID2) end table.insert(ret, dID2) else table.insert(ret, tostring(v)) end end return table.concat(ret, \"\x1B\") end end").c_str());
+			return RBX_Utils::string::split(ret, "\x1B");
 		}
 
 		void SetProperty(std::string name, std::any value) {
@@ -212,7 +212,7 @@ namespace RBX {
 					argsString += ", ";
 				}
 			}
-			std::string valueString = lua_call((std::string("local cs = game:GetService(\"CollectionService\") local inst = cs:GetTagged(\"") + DebugID + "\")[1] if inst then local ret = inst:" + name + "(" + argsString + ") if typeof(ret) == \"table\" then local ret2 = {} for i,v in pairs(ret) do if typeof(v) == \"Instance\" then local dID2 = nil for i,v in ipairs(cs:GetTags(v)) if #v > 6 and v:sub(1,6) == \"__dID_\" then dID2 = v break end end if not dID2 then dID2 = \"__dID_\" .. game:GetService(\"HttpService\"):GenerateGUID(false) cs:AddTag(v, dID2) end table.insert(ret2, dID2) else table.insert(ret2, tostring(v)) end end return table.concat(ret2, \"§\") end if type(ret) ~= \"string\" then ret = tostring(ret) end return ret end end").c_str());
+			std::string valueString = lua_call((std::string("local cs = game:GetService(\"CollectionService\") local inst = cs:GetTagged(\"") + DebugID + "\")[1] if inst then local ret = inst:" + name + "(" + argsString + ") if typeof(ret) == \"table\" then local ret2 = {} for i,v in pairs(ret) do if typeof(v) == \"Instance\" then local dID2 = nil for i,v in ipairs(cs:GetTags(v)) if #v > 6 and v:sub(1,6) == \"__dID_\" then dID2 = v break end end if not dID2 then dID2 = \"__dID_\" .. game:GetService(\"HttpService\"):GenerateGUID(false) cs:AddTag(v, dID2) end table.insert(ret2, dID2) else table.insert(ret2, tostring(v)) end end return table.concat(ret2, \"\x1B\") end if type(ret) ~= \"string\" then ret = tostring(ret) end return ret end end").c_str());
 			if (valueString == "nil") {
 				return { nullptr };
 			}
@@ -227,11 +227,11 @@ namespace RBX {
 			}
 			else {
 				if (!std::isdigit(valueString[0])) {
-					if (valueString.find("§") != std::string::npos) {
+					if (valueString.find("\x1B") != std::string::npos) {
 						std::vector<std::string> values;
 						std::string currentString = "";
 						for (int i = 0; i < valueString.length(); i++) {
-							if (valueString[i] == '§') {
+							if (valueString[i] == '\x1B') {
 								values.push_back(currentString);
 								currentString = "";
 							}
