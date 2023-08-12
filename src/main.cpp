@@ -1,7 +1,7 @@
 ﻿// main.cpp : Defines the entry point for the application.
 //
 
-#include "RBX.h"
+#include "RBX.hpp"
 
 extern "C" {
 	int main() {
