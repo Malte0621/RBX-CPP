@@ -361,4 +361,6 @@ namespace RBX
 			}
 		}
 	};
+
+	Instance* game = Instance::GetInstance("game");
 }

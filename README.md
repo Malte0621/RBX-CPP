@@ -16,6 +16,11 @@
 2. Copy the contents of `dist/*.lua` to the ModuleScript
 3. Require the ModuleScript in a Script and call its exported function(s)
 
+### Exporting
+To export a function, edit the CMakeLists.txt file inside `src` and add the function name to the `EXPORTED_FUNCTIONS` variable. Then, recompile the project. The builder will automatically add the functions to the returned table in `dist/main.lua`!
+
+Remember to use `module.convertString("<string here>")` when passing strings to the exported functions! (Numbers should work as-is.)
+
 ## Example
 ```lua
 local module = require(script:WaitForChild("ModuleScript"))
