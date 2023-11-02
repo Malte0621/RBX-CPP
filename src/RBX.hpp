@@ -62,7 +62,7 @@ namespace RBX
 		lua_call((std::string("error(\"") + text + "\")").c_str());
 	}
 
-	void wait(double seconds)
+	void wait(double seconds = 0)
 	{
 		lua_call((std::string("wait(") + std::to_string(seconds) + ")").c_str());
 	}
