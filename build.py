@@ -75,7 +75,6 @@ def main():
 
         content2 = content.split("return module")
         content = """--!optimize 2
---!native
 local lastSleep = 0
 function peformSleepCheck()
 	if tick() - lastSleep >= 1 then
