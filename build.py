@@ -19,14 +19,15 @@ def main():
         )
         exported_functions = [func[1:] for func in exported_functions if func != ""]
 
-    # Remove build and dist folders if they exist
-    if os.path.exists("build"):
-        shutil.rmtree("build")
+    # Remove (build) and dist folders if they exist
+    # if os.path.exists("build"):
+        # shutil.rmtree("build")
     if os.path.exists("dist"):
         shutil.rmtree("dist")
 
-    # Create build and dist folders
-    os.mkdir("build")
+    # Create (build) and dist folders
+    if not os.path.exists("build"):
+        os.mkdir("build")
     os.mkdir("dist")
 
     # Change directory to build
@@ -35,8 +36,10 @@ def main():
     # Run cmake
     subprocess.run("emcmake cmake -DCMAKE_BUILD_TYPE=Debug ..", shell=True)
 
+    cores = os.cpu_count()
+
     # Build project
-    subprocess.run("cmake --build .", shell=True)
+    subprocess.run("cmake --build . -j" + str(cores), shell=True)
 
     # Change directory to src
     os.chdir("src")
@@ -48,7 +51,7 @@ def main():
     os.chdir("..\\..")
 
     # Remove build folder
-    shutil.rmtree("build")
+    # shutil.rmtree("build")
 
     # Replace some stuff .-.
     with open("dist\\main.lua", "r") as f:
