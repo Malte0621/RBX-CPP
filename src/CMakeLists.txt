@@ -19,7 +19,5 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 set(EMS
       "SHELL:-s EXPORTED_FUNCTIONS=['_malloc','_main','_lua_call','_strlen'] -s EXTRA_EXPORTED_RUNTIME_METHODS=['ccall','cwrap']" # -s LINKABLE=1 -s EXPORT_ALL=1
   )
-  target_compile_options(RbxCppProject PRIVATE ${EMS})
-  target_link_options(RbxCppProject PRIVATE ${EMS})
-
-target_link_options(RbxCppProject PRIVATE )
+target_compile_options(RbxCppProject PRIVATE ${EMS})
+target_link_options(RbxCppProject PRIVATE ${EMS})
