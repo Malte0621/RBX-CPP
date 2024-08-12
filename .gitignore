@@ -14,4 +14,6 @@ _deps
 out/*
 
 dist-*.lua
+build
+dist
 *.old

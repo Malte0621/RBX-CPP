@@ -12,4 +12,5 @@ endif()
 project ("RbxCppProject")
 
 # Include sub-projects.
+add_subdirectory ("deps")
 add_subdirectory ("src")

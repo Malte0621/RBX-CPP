@@ -13,9 +13,21 @@
 
 extern "C"
 {
-	const char *lua_call(const char *code)
+	const char* lua_call(const char* code)
 	{
-		return ""; // Gets replaced from the lua side.
+		// do some random stuff to ensure the compiler doesn't optimize out the code
+		std::string codeStr = code;
+		std::string ret = "";
+
+		for (int i = 0; i < codeStr.length(); i++)
+		{
+			ret += codeStr[i];
+		}
+
+		return ret.c_str();
+
+
+		//return ""; // Gets replaced from the lua side.
 	}
 }
 
@@ -146,6 +158,7 @@ namespace RBX
 			{
 				delete t;
 			};
+			//return []() {};
 		}
 
 		// std::vector<std::string> WaitEvent(std::string name) {

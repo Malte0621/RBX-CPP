@@ -17,7 +17,7 @@ endif()
 set(CMAKE_CXX_FLAGS_RELEASE "-g -O3")
 
 set(EMS
-	"SHELL:-s EXPORTED_FUNCTIONS=['_malloc','_main','_lua_call','_strlen'] -s EXTRA_EXPORTED_RUNTIME_METHODS=['ccall','cwrap']" # -s LINKABLE=1 -s EXPORT_ALL=1
+	"SHELL:-s EXPORTED_FUNCTIONS=['_malloc','_lua_call','_strlen','_main'] -s EXTRA_EXPORTED_RUNTIME_METHODS=['ccall','cwrap']" # -s LINKABLE=1 -s EXPORT_ALL=1
 )
 
 target_compile_options(RbxCppProject PRIVATE ${EMS})
