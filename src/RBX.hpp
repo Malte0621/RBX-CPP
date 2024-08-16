@@ -200,11 +200,29 @@ namespace RBX
 			}
 			else if (valueString.find('.') != std::string::npos)
 			{
-				return std::stod(valueString);
+				try {
+					return std::stod(valueString);
+				} catch (std::exception& e) {
+					try {
+						return GetInstance(valueString);
+					} catch (std::exception& e) {
+						return valueString;
+					}
+				}
 			}
 			else
 			{
-				return std::stoi(valueString);
+				try {
+					return std::stoi(valueString);
+				}
+				catch (std::exception& e) {
+					try {
+						return GetInstance(valueString);
+					}
+					catch (std::exception& e) {
+						return valueString;
+					}
+				}
 			}
 		}
 
@@ -240,7 +258,11 @@ namespace RBX
 			}
 			else if (valueString.find('.') != std::string::npos)
 			{
-				return {std::stod(valueString)};
+				try {
+					return {std::stod(valueString)};
+				} catch (std::exception& e) {
+					return {GetInstance(valueString)};
+				}
 			}
 			else
 			{
@@ -280,11 +302,19 @@ namespace RBX
 							}
 							else if (values[i].find('.') != std::string::npos)
 							{
-								returnValues.push_back(std::stod(values[i]));
+								try {
+									returnValues.push_back(std::stod(values[i]));
+								} catch (std::exception& e) {
+									returnValues.push_back(GetInstance(values[i]));
+								}
 							}
 							else
 							{
-								returnValues.push_back(std::stoi(values[i]));
+								try {
+									returnValues.push_back(std::stoi(values[i]));
+								} catch (std::exception& e) {
+									returnValues.push_back(GetInstance(values[i]));
+								}
 							}
 						}
 						return returnValues;
