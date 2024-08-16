@@ -5,13 +5,14 @@
 
 extern "C" {
 	int main() {
-		RBX::Instance* instance = new RBX::Instance("Part", RBX::Instance::GetInstance("game.Workspace"));
+		RBX::Instance* instance = new RBX::Instance("Part", RBX::Workspace);
 		instance->SetProperty("Name", "CppPart");
-		instance->SetProperty("Parent", RBX::Instance::GetInstance("game.Workspace"));
+		instance->SetProperty("Parent", RBX::Workspace);
 		// instance->SetPropertyRaw("Name", "\"CppPart\"");
 
 		RBX::Instance* cloned = instance->Clone();
-		cloned->SetPropertyRaw("Parent", "game.Workspace");
+		cloned->SetProperty("Parent", RBX::Workspace);
+		//cloned->SetPropertyRaw("Parent", "game.Workspace");
 
 		RBX::print(std::string("PARTS CREATED? Name: ") + instance->GetPropertyRaw("Name"));
 	}

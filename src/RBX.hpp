@@ -375,5 +375,6 @@ namespace RBX
 		}
 	};
 
-	Instance* game = Instance::GetInstance("game");
+	Instance* Game = Instance::GetInstance("game");
+	Instance* Workspace = Instance::GetInstance("game.Workspace");
 }
