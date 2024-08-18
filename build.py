@@ -118,6 +118,8 @@ local function rt_truncate_u32_f32(num)
     return (to_signed(truncate_f64(num)))
 end
 
+rt_truncate_u32_f64 = rt_truncate_u32_f32
+
 local memory_at_0"""
             + content2[1]
         )
