@@ -22,6 +22,7 @@ IMPORT_IMPLS = {
         "    return 0\n"
         "end"
     ),
+    "environ_get": (
         "function(env_ptr, buf_ptr)\n"
         "    local p = buf_ptr\n"
         "    for i, e in ipairs(rbx_env_entries) do\n"
